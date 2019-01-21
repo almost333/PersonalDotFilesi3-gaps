@@ -31,7 +31,7 @@ alert = #bd2c40
 [bar/mybar]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 3%
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 6.0
@@ -44,7 +44,7 @@ foreground =#fff
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 5
 border-color = #7064af
 
 padding-left = 3
@@ -58,7 +58,7 @@ font-1 = Font Awesome 5 Brands:style=Regular:size=13:antialias=true;1
 font-2 = Font Awesome 5 Free:style=Regular:size=13:antialias=true;1
 font-3 = Font Awesome 5 Free:style=Solid:size=13:antialias=true;1
 
-modules-left = bspwm i3
+modules-left = i3
 modules-center = 
 modules-right = xbacklight alsa pulseaudio memory cpu wlan eth battery temperature date powermenu
 
@@ -248,7 +248,7 @@ interval = 3.0
 format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+;label-connected = %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -300,33 +300,33 @@ bar-volume-empty = 
 bar-volume-empty-font = 0
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-#[module/alsa]
-#type = internal/alsa
+;[module/alsa]
+;type = internal/alsa
 
-#format-volume = <label-volume> <bar-volume>
-#label-volume = VOL
-#label-volume-foreground = ${root.foreground}
+;format-volume = <label-volume> <bar-volume>
+;label-volume = VOL
+;label-volume-foreground = ${root.foreground}
 
-#format-muted-prefix = " "
-#format-muted-foreground = ${colors.foreground-alt}
-#label-muted = sound muted
+;format-muted-prefix = " "
+;format-muted-foreground = ${colors.foreground-alt}
+;label-muted = sound muted
 
-#bar-volume-width = 10
-#bar-volume-foreground-0 = #55aa55
-#bar-volume-foreground-1 = #55aa55
-#bar-volume-foreground-2 = #55aa55
-#bar-volume-foreground-3 = #55aa55
-#bar-volume-foreground-4 = #55aa55
-#bar-volume-foreground-5 = #f5a70a
-#bar-volume-foreground-6 = #ff5555
-#bar-volume-gradient = false
-#bar-volume-indicator = |
-#bar-volume-indicator-font = 2
-#bar-volume-fill = ─
-#bar-volume-fill-font = 2
-#bar-volume-empty = ─
-#bar-volume-empty-font = 2
-#bar-volume-empty-foreground = ${colors.foreground-alt}
+;bar-volume-width = 10
+;bar-volume-foreground-0 = #55aa55
+;bar-volume-foreground-1 = #55aa55
+;bar-volume-foreground-2 = #55aa55
+;bar-volume-foreground-3 = #55aa55
+;bar-volume-foreground-4 = #55aa55
+;bar-volume-foreground-5 = #f5a70a
+;bar-volume-foreground-6 = #ff5555
+;bar-volume-gradient = false
+;bar-volume-indicator = |
+;bar-volume-indicator-font = 2
+;bar-volume-fill = ─
+;bar-volume-fill-font = 2
+;bar-volume-empty = ─
+;bar-volume-empty-font = 2
+;bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -334,50 +334,62 @@ battery = BAT0
 adapter = ADP0
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging = <ramp-capacity> <animation-charging> <label-charging>
+format-charging-underline = #f3f3f3
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-discharging = <ramp-capacity> <animation-discharging> <label-discharging>
+format-discharging-underline = #ff0032
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = #aaaaaa
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 =   
+animation-discharging-3 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warm-temperature = 60
+hot-tempertaure = 74
 
 format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-underline = #20a320
+format-warm = <ramp> <label-warn>
+format-warm-underline = #a3a310
 
 label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warm = %temperature-c%
+label-warm-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+formate-hot = <ramp> <lable-hot>
+formate-hot-underline = #10ff10
+
+label-hot = %temperature-c%
+lable-hot-foregrount = ${colors.secondary`}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
